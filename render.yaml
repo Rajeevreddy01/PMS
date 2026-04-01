@@ -8,12 +8,16 @@ services:
     plan: free
     region: ohio
     envVars:
-      - key: DB_URL
-        sync: false # Paste your Internal Database URL here (e.g. postgresql://...)
+      - key: DB_HOST
+        sync: false # Set to your Internal Database Host (e.g. dpg-xxx.render.com)
+      - key: DB_PORT
+        value: "5432"
+      - key: DB_NAME
+        sync: false # Set to your DB Name (e.g. pms_db_bbnl)
       - key: SPRING_DATASOURCE_USERNAME
-        sync: false # Set manually (DB Username)
+        sync: false # Set to your DB Username
       - key: SPRING_DATASOURCE_PASSWORD
-        sync: false # Set manually (DB Password)
+        sync: false # Set to your DB Password
       - key: JWT_SECRET
         generateValue: true
 
