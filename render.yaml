@@ -1,0 +1,44 @@
+services:
+  # Backend Service
+  - type: web
+    name: pms-backend
+    env: docker
+    dockerContext: backend/project-management
+    dockerfilePath: Dockerfile
+    plan: free
+    region: ohio
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: pms-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: pms-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: pms-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+
+  # Frontend Service
+  - type: web
+    name: pms-frontend
+    env: static
+    buildCommand: npm run build
+    publishPath: frontend/dist
+    plan: free
+    region: ohio
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: pms-backend
+          property: host
+
+databases:
+  - name: pms-db
+    plan: free
+    region: ohio
