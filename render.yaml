@@ -1,5 +1,5 @@
 services:
-  # Backend Service
+  # 1. Backend Service (Spring Boot Docker)
   - type: web
     name: pms-backend
     env: docker
@@ -9,15 +9,15 @@ services:
     region: ohio
     envVars:
       - key: SPRING_DATASOURCE_URL
-        sync: false # Paste your existing Database Internal URL here
+        sync: false # Set manually in Render Dashboard (Internal DB URL)
       - key: SPRING_DATASOURCE_USERNAME
-        sync: false # Your existing Database username
+        sync: false # Set manually (DB Username)
       - key: SPRING_DATASOURCE_PASSWORD
-        sync: false # Your existing Database password
+        sync: false # Set manually (DB Password)
       - key: JWT_SECRET
         generateValue: true
 
-  # Frontend Service (Corrected for Monorepo)
+  # 2. Frontend Service (React/Vite Static)
   - type: web
     name: pms-frontend
     env: static
