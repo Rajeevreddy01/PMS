@@ -9,17 +9,11 @@ services:
     region: ohio
     envVars:
       - key: SPRING_DATASOURCE_URL
-        fromDatabase:
-          name: pms-db
-          property: connectionString
+        sync: false # Set this to your existing Database's Internal URL
       - key: SPRING_DATASOURCE_USERNAME
-        fromDatabase:
-          name: pms-db
-          property: user
+        sync: false # Set this to your existing DB Username
       - key: SPRING_DATASOURCE_PASSWORD
-        fromDatabase:
-          name: pms-db
-          property: password
+        sync: false # Set this to your existing DB Password
       - key: JWT_SECRET
         generateValue: true
 
@@ -38,7 +32,3 @@ services:
           name: pms-backend
           property: host
 
-databases:
-  - name: pms-db
-    plan: free
-    region: ohio
