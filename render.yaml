@@ -3,7 +3,7 @@ services:
   - type: web
     name: pms-backend
     env: docker
-    dockerContext: backend/project-management
+    dockerContext: .
     dockerfilePath: Dockerfile
     plan: free
     region: ohio
