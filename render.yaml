@@ -7,7 +7,10 @@ services:
     dockerfilePath: Dockerfile
     plan: free
     region: ohio
+    # Explicitly set the port for Spring Boot
     envVars:
+      - key: PORT
+        value: "8080"
       - key: DB_HOST
         sync: false # Set to your Internal Database Host (e.g. dpg-xxx.render.com)
       - key: DB_PORT
