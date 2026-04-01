@@ -9,20 +9,20 @@ services:
     region: ohio
     envVars:
       - key: SPRING_DATASOURCE_URL
-        sync: false # Set this to your existing Database's Internal URL
+        sync: false # Paste your existing Database Internal URL here
       - key: SPRING_DATASOURCE_USERNAME
-        sync: false # Set this to your existing DB Username
+        sync: false # Your existing Database username
       - key: SPRING_DATASOURCE_PASSWORD
-        sync: false # Set this to your existing DB Password
+        sync: false # Your existing Database password
       - key: JWT_SECRET
         generateValue: true
 
-  # Frontend Service
-  - type: web
+  # Frontend Service (Corrected for Monorepo)
+  - type: static
     name: pms-frontend
-    env: static
-    buildCommand: npm run build
-    publishPath: frontend/dist
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishPath: dist
     plan: free
     region: ohio
     envVars:
