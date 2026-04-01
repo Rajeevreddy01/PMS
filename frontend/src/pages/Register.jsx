@@ -66,6 +66,7 @@ export default function Register() {
                 <select className="form-select" name="role" value={form.role} onChange={handleChange}>
                   <option value="USER">User</option>
                   <option value="MANAGER">Manager</option>
+                  <option value="ADMIN">Admin</option>
                 </select>
               </div>
             </div>
