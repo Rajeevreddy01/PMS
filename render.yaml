@@ -18,8 +18,9 @@ services:
         generateValue: true
 
   # Frontend Service (Corrected for Monorepo)
-  - type: static
+  - type: web
     name: pms-frontend
+    env: static
     rootDir: frontend
     buildCommand: npm install && npm run build
     publishPath: dist
