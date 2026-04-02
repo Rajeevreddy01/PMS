@@ -15,6 +15,11 @@ INSERT INTO users (username, email, password, role, created_at)
 VALUES ('dev1', 'dev@pms.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'USER', NOW())
 ON CONFLICT (username) DO NOTHING;
 
+-- Insert user from screenshot
+INSERT INTO users (username, email, password, role, created_at)
+VALUES ('Karthik', 'karthik@pms.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'ADMIN', NOW())
+ON CONFLICT (username) DO NOTHING;
+
 
 -- Insert sample projects
 INSERT INTO projects (name, description, status, start_date, end_date, owner_id, created_at)
