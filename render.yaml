@@ -35,10 +35,7 @@ services:
     staticPublishPath: dist
     envVars:
       - key: VITE_API_BASE_URL
-        fromService:
-          type: web
-          name: pms-backend
-          property: host
+        value: https://pms-backend-kmql.onrender.com
     routes:
       - type: rewrite
         source: /*
