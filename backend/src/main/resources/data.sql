@@ -20,6 +20,11 @@ INSERT INTO users (username, email, password, role, created_at)
 SELECT 'Karthik', 'karthik@pms.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'ADMIN', NOW()
 WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'Karthik');
 
+-- Insert user from screenshot 2
+INSERT INTO users (username, email, password, role, created_at)
+SELECT 'Rajeev', 'rajeev@pms.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'ADMIN', NOW()
+WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'Rajeev');
+
 
 -- Insert sample projects
 INSERT INTO projects (name, description, status, start_date, end_date, owner_id, created_at)
