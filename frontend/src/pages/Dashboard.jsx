@@ -32,16 +32,34 @@ function greeting() {
 export default function Dashboard() {
   const { user } = useAuth()
   const [stats, setStats]     = useState(null)
+  const [error,   setError]   = useState(false)
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
+  const loadStats = () => {
+    setLoading(true)
+    setError(false)
     dashboardService.getStats()
       .then(r => setStats(r.data))
-      .catch(() => toast.error('Failed to load dashboard'))
+      .catch(() => {
+        toast.error('Failed to load dashboard')
+        setError(true)
+      })
       .finally(() => setLoading(false))
-  }, [])
+  }
+
+  useEffect(() => { loadStats() }, [])
 
   if (loading) return <div className="page-loader"><div className="spinner" /></div>
+  if (error) {
+    return (
+      <div className="empty-state" style={{ height: '50vh' }}>
+        <div className="empty-state-icon">⚠</div>
+        <div className="empty-state-title">Dashboard loading failed</div>
+        <div className="empty-state-text">Check your internet connection or the backend status.</div>
+        <button className="btn btn-primary btn-sm" style={{ marginTop: 16 }} onClick={loadStats}>Try Again</button>
+      </div>
+    )
+  }
   if (!stats)  return null
 
   const taskStatusData = [
