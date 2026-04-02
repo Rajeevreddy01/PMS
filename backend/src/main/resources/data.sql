@@ -2,23 +2,23 @@
 
 -- Insert default admin user (password: admin123 — BCrypt encoded)
 INSERT INTO users (username, email, password, role, created_at)
-VALUES ('admin', 'admin@pms.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'ADMIN', NOW())
-ON CONFLICT (username) DO NOTHING;
+SELECT 'admin', 'admin@pms.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'ADMIN', NOW()
+WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'admin');
 
 -- Insert sample manager
 INSERT INTO users (username, email, password, role, created_at)
-VALUES ('manager1', 'manager@pms.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'MANAGER', NOW())
-ON CONFLICT (username) DO NOTHING;
+SELECT 'manager1', 'manager@pms.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'MANAGER', NOW()
+WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'manager1');
 
 -- Insert sample developer
 INSERT INTO users (username, email, password, role, created_at)
-VALUES ('dev1', 'dev@pms.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'USER', NOW())
-ON CONFLICT (username) DO NOTHING;
+SELECT 'dev1', 'dev@pms.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'USER', NOW()
+WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'dev1');
 
 -- Insert user from screenshot
 INSERT INTO users (username, email, password, role, created_at)
-VALUES ('Karthik', 'karthik@pms.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'ADMIN', NOW())
-ON CONFLICT (username) DO NOTHING;
+SELECT 'Karthik', 'karthik@pms.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'ADMIN', NOW()
+WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'Karthik');
 
 
 -- Insert sample projects
@@ -52,4 +52,3 @@ SELECT 'Design database schema', 'Create ERD and MySQL schema', 'TODO', 'MEDIUM'
        '2024-02-15', p.id, u.id, NOW()
 FROM projects p, users u WHERE p.name = 'CRM System' AND u.username = 'dev1'
 AND NOT EXISTS (SELECT 1 FROM tasks WHERE title = 'Design database schema');
-
