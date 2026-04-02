@@ -70,6 +70,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         // Allow all Render subdomains and local dev ports
         configuration.setAllowedOriginPatterns(List.of(
+            "https://pms-frontend-kmql.onrender.com",
             "https://*.onrender.com", 
             "http://localhost:[*]", 
             "http://127.0.0.1:[*]"

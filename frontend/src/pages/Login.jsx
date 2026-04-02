@@ -20,7 +20,14 @@ export default function Login() {
       toast.success('Welcome back!')
       navigate('/dashboard')
     } catch (err) {
-      toast.error(err.response?.data?.message ?? 'Login failed')
+      console.error('[Login Error]', err)
+      const detail = err.response?.data?.message 
+        || err.response?.statusText 
+        || err.message 
+        || 'Connection failed'
+      
+      const status = err.response?.status ? ` (${err.response.status})` : ''
+      toast.error(`Login failed: ${detail}${status}`)
     } finally {
       setLoading(false)
     }
